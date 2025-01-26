@@ -17,11 +17,11 @@ struct TVShowItemView: View {
                     .font(.title2)
                     .fontWeight(.bold)
                 
-                Text(tvShow.description)
+                Text(tvShow.overview)
                     .font(.body)
                     .lineLimit(3)
                 
-                Text("Release Date: \(tvShow.releaseDate)")
+                Text("Release Date: \(tvShow.year)")
                     .font(.subheadline)
             }
         }

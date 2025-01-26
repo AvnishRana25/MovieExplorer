@@ -18,11 +18,11 @@ struct MovieItemView: View {
                     .font(.title2)
                     .fontWeight(.bold)
                 
-                Text(movie.description)
+                Text(movie.overview)
                     .font(.body)
                     .lineLimit(3)
                 
-                Text("Release Date: \(movie.releaseDate)")
+                Text("Release Date: \(movie.year)")
                     .font(.subheadline)
             }
         }

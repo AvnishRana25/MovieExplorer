@@ -1,12 +1,21 @@
 import Foundation
 
 /// TVshow dikhaega with the given details
-struct TVShow: Identifiable, Codable {
+struct TVShow: Decodable, Identifiable {
     let id: Int
     let title: String
-    let description: String
-    let releaseDate: String
-    let posterURL: URL?
-    
-    // Additional TV show properties can be added as needed
+    let year: Int
+    let imdb_id: String?
+    let tmdb_id: Int?
+    let tmdb_type: String?
+    let type: String?
+    let posterPath: String?
+    let overview: String // Add this line for movie description
+
+    // Computed property to create the poster URL
+    var posterURL: URL? {
+        guard let posterPath = posterPath else { return nil }
+        return URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)")
+    }
 }
+

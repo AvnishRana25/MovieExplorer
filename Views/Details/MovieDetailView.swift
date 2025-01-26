@@ -18,10 +18,10 @@ struct MovieDetailView: View {
                     .font(.title)
                     .fontWeight(.bold)
                 
-                Text(movie.description)
+                Text(movie.overview)
                     .font(.body)
                 
-                Text("Release Date: \(movie.releaseDate)")
+                Text("Release Date: \(movie.year)")
                     .font(.subheadline)
             }
             .padding()

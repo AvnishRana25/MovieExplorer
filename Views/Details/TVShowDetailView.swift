@@ -18,10 +18,10 @@ struct TVShowDetailView: View {
                     .font(.title)
                     .fontWeight(.bold)
                 
-                Text(tvShow.description)
+                Text(tvShow.overview)
                     .font(.body)
                 
-                Text("Release Date: \(tvShow.releaseDate)")
+                Text("Release Date: \(tvShow.year)")
                     .font(.subheadline)
             }
             .padding()

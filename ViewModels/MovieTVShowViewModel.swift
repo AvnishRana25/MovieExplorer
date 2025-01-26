@@ -1,23 +1,20 @@
 import Foundation
 import Combine
 
-/// data hai movies and TV shows ke liye
 class MovieTVShowViewModel: ObservableObject {
     @Published var movies: [Movie] = []
     @Published var tvShows: [TVShow] = []
     @Published var isLoading: Bool = false
-    
-    private let watchmodeAPI: WatchmodeAPI
     private var cancellables = Set<AnyCancellable>()
     
-    init(watchmodeAPI: WatchmodeAPI = WatchmodeAPI()) {
-        self.watchmodeAPI = watchmodeAPI
-    }
+    private let watchmodeAPI = WatchmodeAPI()
     
-    /// Fetches karta hai  movies and TV shows  Watchmode API se
     func fetchMoviesAndTVShows() {
         isLoading = true
+        
+        // Fetch movies
         watchmodeAPI.fetchMovies()
+            .receive(on: DispatchQueue.main) // Dispatch updates to the main thread
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .finished:
@@ -31,7 +28,9 @@ class MovieTVShowViewModel: ObservableObject {
             })
             .store(in: &cancellables)
         
+        // Fetch TV shows
         watchmodeAPI.fetchTVShows()
+            .receive(on: DispatchQueue.main) // Dispatch updates to the main thread
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .finished:
